@@ -1,0 +1,54 @@
+---
+title: "HW1"
+author: "Shibei XU"
+date: 2021-09-27
+output: html_document
+---
+
+```{r loading_library,include = FALSE}
+library(tidyverse)
+```
+
+# 1.Data input
+First, we create a dataframe that comprised of: a random sample of size 10 from a standard Normal distribution;a logical vector indicating whether elements of the sample are greater than 0;a character vector of length 10
+a factor vector of length 10, with 3 different factor “levels”
+
+```{r df_create,echo=TRUE}
+set.seed(123)
+
+hw_df = tibble(
+  vec_num = rnorm(10, sd = .5),
+  vec_log = vec_num>0,
+  vec```{r asnumeric,eval=FALSE, echo=TRUE}
+as.numeric(hw_df,vec_log)
+as.numeric(hw_df,vec_char)
+as.numeric(hw_df,vec_factor)
+```_char = character(10),
+  vec_factor=factor(levels = c("a", "b" , "c"),10)
+)
+```
+
+The mean of the variable `vec_num` is `mean(pull(hw_df, vec_num))`, of the `vec_log` is `mean(pull(hw_df, vec_log))`,`vec_char` is `mean(pull(hw_df, vec_char))`,`vec_factor` is `mean(pull(hw_df, vec_factor))`
+
+```{r loaddataset,echo=FALSE}
+install.packages("palmerpenguins")
+```
+
+Next we show a scatterplot of `y` vs `x`. 
+
+```{r loaddata, echo=FALSE}
+data("penguins", package = "palmerpenguins")
+```
+
+```{r}
+summary(penguins)
+nrow(penguins)
+ncol(penguins)
+```
+```{r}
+ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm,color=species)) + geom_point()
+```
+```{r}
+ggsave("scatter_plothomework.pdf", height = 4, width = 6)
+```
+

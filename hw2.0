@@ -1,0 +1,37 @@
+---
+title: "HW1"
+author: "Shibei XU"
+date: 2021-09-27
+output: html_document
+---
+
+```{r loading_library,include = FALSE}
+library(tidyverse)
+```
+
+# 1.Data input
+First, we create a dataframe that comprised of: a random sample of size 10 from a standard Normal distribution;a logical vector indicating whether elements of the sample are greater than 0;a character vector of length 10
+a factor vector of length 10, with 3 different factor “levels”
+
+```{r df_create}
+set.seed(1234)
+
+hw_df = tibble(
+  vec_num = rnorm(10, sd = .5),
+  vec_log = vec_num>0,
+  vec_char = character(10),
+  vec_factor=factor(levels = c("a", "b" , "c"),10)
+)
+```
+
+The mean of the variable `vec_num` is `mean(pull(hw_df, vec_num))`, 
+
+```{r x_hist}
+ggplot(plot_df, aes(x = x)) + geom_histogram()
+```
+
+Next we show a scatterplot of `y` vs `x`. 
+
+```{r yx_scatter}
+ggplot(plot_df, aes(x = x, y = y)) + geom_point()
+```
